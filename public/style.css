@@ -132,6 +132,10 @@ button:disabled {
     font-weight: 700;
 }
 
+.badge.hidden {
+    display: none;
+}
+
 .badge.warn {
     background: #e3a008;
     color: #151515;
