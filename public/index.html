@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Topic Bidding</title>
+	<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+	<main class="wrap">
+		<h1>Topic Bidding</h1>
+
+		<section id="joinView" class="card">
+			<div class="row">
+				<label>
+					Room Code
+					<input id="roomInput" placeholder="ABCD" autocomplete="off" />
+				</label>
+				<label>
+					Name
+					<input id="nameInput" placeholder="Your name" autocomplete="off" />
+				</label>
+			</div>
+			<button id="joinBtn">Join</button>
+			<p class="hint">One person joins first → they become host and can set topics/capacity/budget.</p>
+		</section>
+
+		<section id="appView" class="card hidden">
+			<div class="topbar">
+				<div>
+					<div class="meta">
+						<span>Room: <strong id="roomLabel"></strong></span>
+						<span id="hostBadge" class="badge hidden">HOST</span>
+						<span id="lockBadge" class="badge warn hidden">LOCKED</span>
+					</div>
+					<div class="meta">
+						<span>Budget: <strong id="budgetLabel"></strong></span>
+						<span>Spent: <strong id="spentLabel"></strong></span>
+						<span>Remaining: <strong id="remainingLabel"></strong></span>
+					</div>
+				</div>
+
+				<div class="hostPanel hidden" id="hostPanel">
+					<label>
+						Budget
+						<input id="budgetInput" type="number" min="1" max="10000" step="1" />
+					</label>
+					<label class="check">
+						<input id="revealBidsInput" type="checkbox" />
+						Reveal bids to everyone
+					</label>
+					<label class="check">
+						<input id="allowJoinAfterLockInput" type="checkbox" />
+						Allow join after lock
+					</label>
+
+					<div class="row">
+						<button id="saveConfigBtn">Save Config</button>
+						<button id="lockBtn">Lock Bids</button>
+						<button id="unlockBtn" class="ghost">Unlock</button>
+						<button id="computeBtn">Compute Winners</button>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<section class="grid">
+				<div>
+					<h2>Topics</h2>
+					<div id="topics"></div>
+
+					<div id="topicEditor" class="hostPanel hidden">
+						<h3>Host: edit topics</h3>
+						<div id="topicRows"></div>
+						<div class="row">
+							<button id="addTopicBtn" class="ghost">+ Add Topic</button>
+							<button id="saveTopicsBtn">Save Topics</button>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<h2>Players</h2>
+					<div id="players"></div>
+
+					<h2>Results</h2>
+					<div id="results" class="mono">No results yet.</div>
+				</div>
+			</section>
+		</section>
+	</main>
+
+	<script src="./app.js"></script>
+</body>
+</html>
