@@ -73,14 +73,11 @@ function roomSnapshot(room) {
 	const topics = room.topics.map(t => ({ ...t }));
 
 	// Optionally hide per-topic bids until reveal.
-	let bids = null;
-	if (room.config.revealBids) {
-		bids = {};
-		for (const [playerId, perTopic] of room.bids.entries()) {
-			bids[playerId] = {};
-			for (const [topicId, b] of perTopic.entries()) {
-				bids[playerId][topicId] = { amount: b.amount, ts: b.ts };
-			}
+	let bids = {};
+	for (const [playerId, perTopic] of room.bids.entries()) {
+		bids[playerId] = {};
+		for (const [topicId, b] of perTopic.entries()) {
+			bids[playerId][topicId] = { amount: b.amount, ts: b.ts };
 		}
 	}
 
@@ -91,7 +88,8 @@ function roomSnapshot(room) {
 		locked: room.locked,
 		topics,
 		players,
-		bids
+		bids,
+		revealBids: room.config.revealBids
 	};
 }
 

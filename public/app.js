@@ -193,7 +193,7 @@ function renderTopics() {
 		card.appendChild(bidRow);
 
 		// If bids are revealed, show top bidders preview
-		if (room.bids) {
+		if (room.bids && room.config.revealBids) {
 			const all = [];
 			for (const p of room.players) {
 				const amt = Math.floor(room.bids[p.id]?.[t.id]?.amount ?? 0);
